@@ -69,7 +69,7 @@ this task
 	public static Hero chooseHero()
 	{
 		int choice;
-		//Hero theHero; <--------------------------------------------------Removed, this is not used AM
+		//Hero theHero; <------------------------------------------------------------------------------------------------------------------------------Removed, this is not used AM
 
 		System.out.println("Choose a hero:\n" +
 					       "1. Warrior\n" +
