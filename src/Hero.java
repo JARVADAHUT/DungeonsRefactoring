@@ -55,7 +55,7 @@ This method is called by: hero constructor
 ---------------------------------------------------------*/
   public void readName()
   {
-		System.out.print("Enter character name: ");
+		System.out.print("Enter character name: ");//-------------------------------------------------------------------------------------- Move this whole method to HeroFactory
 		name = Keyboard.readString();
   }//end readName method
 

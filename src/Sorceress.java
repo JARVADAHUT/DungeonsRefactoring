@@ -13,6 +13,10 @@
 
 public class Sorceress extends Hero
 {
+	static {
+		HeroFactory.getInstance().registerCharacter("sorceress",Sorceress.class);
+	}
+	
 	public final int MIN_ADD = 25;
 	public final int MAX_ADD = 50;
 

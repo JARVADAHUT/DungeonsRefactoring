@@ -15,6 +15,10 @@
 public class Warrior extends Hero
 {
 
+	static {
+		HeroFactory.getInstance().registerCharacter("warrior",Warrior.class);
+	}
+	
     public Warrior()
 	{
 

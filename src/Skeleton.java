@@ -11,6 +11,9 @@
 
 public class Skeleton extends Monster
 {
+	static {
+		MonsterFactory.getInstance().registerCharacter("skeleton",Skeleton.class);
+	}
 
     public Skeleton()
 	{

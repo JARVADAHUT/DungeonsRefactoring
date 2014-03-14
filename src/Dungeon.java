@@ -73,7 +73,7 @@ this task
 
 		System.out.println("Choose a hero:\n" +
 					       "1. Warrior\n" +
-						   "2. Sorceress\n" +
+						   "2. Sorceress\n" + //--------------------------------------------------------------------------------------------------------- Get this to the factory/Get list from factory
 						   "3. Thief");
 		choice = Keyboard.readInt();
 

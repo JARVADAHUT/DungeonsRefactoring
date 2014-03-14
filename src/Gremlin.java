@@ -11,6 +11,9 @@
 
 public class Gremlin extends Monster
 {
+	static {
+		MonsterFactory.getInstance().registerCharacter("gremlin",Gremlin.class);
+	}
 
     public Gremlin()
 	{

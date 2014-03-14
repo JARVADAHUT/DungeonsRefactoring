@@ -11,6 +11,9 @@
 
 public class Ogre extends Monster
 {
+	static {
+		MonsterFactory.getInstance().registerCharacter("ogre",Ogre.class);
+	}
 
     public Ogre()
 	{
