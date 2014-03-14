@@ -1,3 +1,7 @@
+import java.util.Scanner;
+
+import javax.management.ReflectionException;
+
 /**
  * Title: Dungeon.java
  *
@@ -45,9 +49,11 @@
 */
 public class Dungeon
 {
-    public static void main(String[] args)
+	private static Scanner kb = new Scanner(System.in);
+    
+	public static void main(String[] args)
 	{
-
+    	
 		Hero theHero;
 		Monster theMonster;
 
@@ -71,25 +77,24 @@ this task
 		int choice;
 		//Hero theHero; <------------------------------------------------------------------------------------------------------------------------------Removed, this is not used AM
 
-		System.out.println("Choose a hero:\n" +
-					       "1. Warrior\n" +
-						   "2. Sorceress\n" + //--------------------------------------------------------------------------------------------------------- Get this to the factory/Get list from factory
-						   "3. Thief");
-		choice = Keyboard.readInt();
-
-		switch(choice)
-		{
-			case 1: return new Warrior();
-
-			case 2: return new Sorceress();
-
-			case 3: return new Thief();
-
-			default: System.out.println("invalid choice, returning Thief");
-				     return new Thief();
-		}//end switch
+		System.out.println(HeroFactory.getInstance().getRegisteredCharactersList());
+		choice = kb.nextInt();
+		kb.nextLine();
+		Hero result = null;
+		while(result == null) {
+			try {
+				result = HeroFactory.getInstance().getCharacter(choice, getName());
+			} catch (ReflectionException | SecurityException | ReflectiveOperationException e) {
+				System.out.println("Unable to build selected character! Please make a better selection.");
+			}
+		}
+		return result;
 	}//end chooseHero method
 
+	public static String getName(){
+		System.out.print("Please enter a name for your hero: ");
+		return kb.nextLine();
+	}
 /*-------------------------------------------------------------------
 generateMonster randomly selects a Monster and returns it.  It utilizes
 a polymorphic reference (Monster) to accomplish this task.
@@ -122,7 +127,7 @@ true if the user chooses to continue, false otherwise.
 		char again;
 
 		System.out.println("Play again (y/n)?");
-		again = Keyboard.readChar();
+		again = kb.nextLine().charAt(0);
 
 		return (again == 'Y' || again == 'y');
 	}//end playAgain method
@@ -153,7 +158,7 @@ user has the option of quitting.
 
 			//let the player bail out if desired
 			System.out.print("\n-->q to quit, anything else to continue: ");
-			pause = Keyboard.readChar();
+			pause = kb.nextLine().charAt(0);
 
 		}//end battle loop
 

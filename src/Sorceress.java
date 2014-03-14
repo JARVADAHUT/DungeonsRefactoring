@@ -14,16 +14,16 @@
 public class Sorceress extends Hero
 {
 	static {
-		HeroFactory.getInstance().registerCharacter("sorceress",Sorceress.class);
+		HeroFactory.getInstance().registerCharacter(3,Sorceress.class);
 	}
 	
 	public final int MIN_ADD = 25;
 	public final int MAX_ADD = 50;
 
 //-----------------------------------------------------------------
-    public Sorceress()
+    public Sorceress(String playerName)
 	{
-		super("Sorceress", 75, 5, .7, 25, 50, .3);
+		super("Sorceress", 75, 5, .7, 25, 50, .3, playerName);
 
 
     }//end constructor

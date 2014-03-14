@@ -13,12 +13,12 @@ public class Thief extends Hero
 {
 
 	static {
-		HeroFactory.getInstance().registerCharacter("thief",Thief.class);
+		HeroFactory.getInstance().registerCharacter(2,Thief.class);
 	}
 	
-    public Thief()
+    public Thief(String playerName)
 	{
-		super("Thief", 75, 6, .8, 20, 40, .5);
+		super("Thief", 75, 6, .8, 20, 40, .5, playerName);
 
 
 

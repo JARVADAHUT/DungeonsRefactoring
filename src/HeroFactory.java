@@ -1,17 +1,16 @@
 import java.lang.reflect.Constructor;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.LinkedList;
 
 import javax.management.ReflectionException;
 
 
 public class HeroFactory {
-	private Map<String,Class<Hero>> characters;
+	private LinkedList<Class<? extends Hero>> characters;
 	private static HeroFactory instance;
 	
 
 	private HeroFactory(){
-		characters = new LinkedHashMap<String,Class<Hero>>();
+		characters = new LinkedList<Class<? extends Hero>>();
 	}
 	
 	public static HeroFactory getInstance(){
@@ -20,17 +19,28 @@ public class HeroFactory {
 		return instance;
 	}
 
-	public Hero getCharacter(String characterType) throws ReflectionException, ReflectiveOperationException, SecurityException {
+	
+	public Hero getCharacter(int characterIndex, String playerName) throws ReflectionException, ReflectiveOperationException, SecurityException {
 		
-		Class<Hero> productClass = (Class<Hero>)characters.get(characterType);
-		Constructor productConstructor = productClass.getDeclaredConstructor(new Class[] { String.class });
-		return (Hero)productConstructor.newInstance(new Object[] { });
+		Class<? extends Hero> productClass = (Class<? extends Hero>)characters.get(characterIndex);
+		Constructor<? extends Hero> productConstructor = productClass.getDeclaredConstructor(new Class[]{String.class});
+		return (Hero)productConstructor.newInstance(new Object[] {playerName});
 	}
 
 
-	public void registerCharacter(String characterName, Class characterClass) {
-		characters.put(characterName, characterClass);
+	public void registerCharacter(int position, Class<? extends Hero> characterClass) {
+		characters.add(position,characterClass);
 		
+	}
+	
+	
+	public String getRegisteredCharactersList(){
+		String result = "";
+		int i = 0;
+		for(Class<? extends Hero> h : characters ){
+			result += ++i + ". " + h.getSimpleName() + "\n";
+		}
+		return result;
 	}
 
 }

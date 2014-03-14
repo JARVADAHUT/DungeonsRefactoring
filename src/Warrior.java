@@ -16,13 +16,13 @@ public class Warrior extends Hero
 {
 
 	static {
-		HeroFactory.getInstance().registerCharacter("warrior",Warrior.class);
+		HeroFactory.getInstance().registerCharacter(1,Warrior.class);
 	}
 	
-    public Warrior()
+    public Warrior(String playerName)
 	{
 
-		super("Warrior", 125, 4, .8, 35, 60, .2);
+		super("Warrior", 125, 4, .8, 35, 60, .2, playerName);
 
 
     }//end constructor

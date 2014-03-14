@@ -32,16 +32,16 @@ public abstract class Hero extends DungeonCharacter
 {
 	protected double chanceToBlock;
 	protected int numTurns;
-
+	
 //-----------------------------------------------------------------
 //calls base constructor and gets name of hero from user
   public Hero(String name, int hitPoints, int attackSpeed,
 				     double chanceToHit, int damageMin, int damageMax,
-					 double chanceToBlock)
+					 double chanceToBlock, String playerName)
   {
 	super(name, hitPoints, attackSpeed, chanceToHit, damageMin, damageMax);
 	this.chanceToBlock = chanceToBlock;
-	readName();
+	super.name = playerName;
   }
 
 /*-------------------------------------------------------
@@ -53,11 +53,11 @@ Returns: nothing
 This method calls: nothing
 This method is called by: hero constructor
 ---------------------------------------------------------*/
-  public void readName()
-  {
-		System.out.print("Enter character name: ");//-------------------------------------------------------------------------------------- Move this whole method to HeroFactory
-		name = Keyboard.readString();
-  }//end readName method
+  //public void readName()
+  //{
+  //	System.out.print("Enter character name: ");//-------------------------------------------------------------------------------------- Moved this whole method to Dungeon AM
+  //	name = Keyboard.readString();
+  //}//end readName method
 
 /*-------------------------------------------------------
 defend determines if hero blocks attack

@@ -23,12 +23,12 @@ public class MonsterFactory {
 	public Monster getCharacter(String characterType) throws ReflectionException, ReflectiveOperationException, SecurityException {
 		
 		Class<Monster> productClass = (Class<Monster>)characters.get(characterType);
-		Constructor productConstructor = productClass.getDeclaredConstructor(new Class[] { String.class });
+		Constructor<Monster> productConstructor = productClass.getDeclaredConstructor(new Class[] { String.class });
 		return (Monster)productConstructor.newInstance(new Object[] { });
 	}
 
 
-	public void registerCharacter(String characterName, Class characterClass) {
+	public void registerCharacter(String characterName, Class<Monster> characterClass) {
 		characters.put(characterName, characterClass);
 		
 	}
