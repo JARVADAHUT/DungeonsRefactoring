@@ -14,7 +14,7 @@ public class Thief extends Hero
 	
 	static 
 	{
-		HeroFactory.getInstance().registerCharacter(2,Thief.class);
+		HeroFactory.getInstance().registerCharacter(1,Thief.class);
 		
 		stats = new StatsTypes();
 		

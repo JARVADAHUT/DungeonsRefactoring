@@ -17,7 +17,7 @@ public class Warrior extends Hero
 
 	static 
 	{
-		HeroFactory.getInstance().registerCharacter(1,Warrior.class);
+		HeroFactory.getInstance().registerCharacter(0,Warrior.class);
 		
 		stats = new StatsTypes();
 		

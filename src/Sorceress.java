@@ -16,7 +16,7 @@ public class Sorceress extends Hero
 	
 	static 
 	{
-		HeroFactory.getInstance().registerCharacter(3,Sorceress.class);
+		HeroFactory.getInstance().registerCharacter(2,Sorceress.class);
 		
 		stats = new StatsTypes();
 		

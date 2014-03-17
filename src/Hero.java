@@ -135,10 +135,21 @@ This method is called by: external sources
 		do
 		{
 		    System.out.println("1. Attack Opponent");
-		    System.out.println("2. Increase Hit Points");
+		    System.out.println("2." + specialAttackBehavior.getSpecialDescription());
 		    System.out.print("Choose an option: ");
-		    choice = kb.nextInt();
-
+		    
+		    choice = 1;
+		    
+		    try
+		    {
+		    	choice = kb.nextInt();
+		    }
+		    catch(Exception e)
+		    {
+		    	System.out.println("Ha, you tried to put in invalid input. So just to piss you off we defaulted it to Attack Opponent.");
+		    	
+		    }
+		    kb.nextLine();
 		    switch (choice)
 		    {
 			    case 1: attack(opponent);

@@ -1,16 +1,18 @@
 import java.lang.reflect.Constructor;
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 import javax.management.ReflectionException;
 
 
 public class HeroFactory {
-	private LinkedList<Class<? extends Hero>> characters;
+	private List<Class<? extends Hero>> characters;
 	private static HeroFactory instance;
 	
 
 	private HeroFactory(){
-		characters = new LinkedList<Class<? extends Hero>>();
+		characters = new ArrayList<Class<? extends Hero>>();
 	}
 	
 	public static HeroFactory getInstance(){

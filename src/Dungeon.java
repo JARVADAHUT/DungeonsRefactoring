@@ -49,6 +49,24 @@ import javax.management.ReflectionException;
 */
 public class Dungeon
 {
+	static 
+	{
+		try 
+		{
+			Class.forName("Warrior");
+			Class.forName("Thief");
+			Class.forName("Sorceress");
+			Class.forName("Skeleton");
+			Class.forName("Ogre");
+			Class.forName("Gremlin");
+		} 
+		catch (ClassNotFoundException e) 
+		{
+			e.printStackTrace();
+		}
+	
+	}
+	
 	private static Scanner kb = new Scanner(System.in);
     
 	public static void main(String[] args)
@@ -83,7 +101,7 @@ this task
 		Hero result = null;
 		while(result == null) {
 			try {
-				result = HeroFactory.getInstance().getCharacter(choice, getName());
+				result = HeroFactory.getInstance().getCharacter(choice - 1, getName());
 			} catch (ReflectionException | SecurityException | ReflectiveOperationException e) {
 				System.out.println("Unable to build selected character! Please make a better selection.");
 			}
@@ -141,13 +159,13 @@ user has the option of quitting.
 ---------------------------------------------------------------------*/
 	public static void battle(Hero theHero, Monster theMonster)
 	{
-		char pause = 'p';
+		String pause = "";
 		System.out.println(theHero.getName() + " battles " +
 							theMonster.getName());
 		System.out.println("---------------------------------------------");
 
 		//do battle
-		while (theHero.isAlive() && theMonster.isAlive() && pause != 'q')
+		while (theHero.isAlive() && theMonster.isAlive() && !pause.equals("q"))
 		{
 		    //hero goes first
 			theHero.battleChoices(theMonster);
@@ -158,7 +176,7 @@ user has the option of quitting.
 
 			//let the player bail out if desired
 			System.out.print("\n-->q to quit, anything else to continue: ");
-			pause = kb.nextLine().charAt(0);
+			pause = kb.nextLine();
 
 		}//end battle loop
 
