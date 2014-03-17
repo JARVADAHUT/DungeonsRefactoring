@@ -41,7 +41,9 @@ public abstract class DungeonCharacter implements Comparable
 	protected int attackSpeed;
 	protected double chanceToHit;
 	protected int damageMin, damageMax;
-
+	protected String attackFlavorText;
+	protected static StatsTypes stats;
+	
 	public int compareTo(Object o)
 	{
 		return 1;
@@ -50,16 +52,13 @@ public abstract class DungeonCharacter implements Comparable
 //-----------------------------------------------------------------
 //explicit constructor to initialize instance variables -- it is called
 // by derived classes
-	public DungeonCharacter(String name, int hitPoints, int attackSpeed,
-				     double chanceToHit, int damageMin, int damageMax)
+	public DungeonCharacter(StatsTypes stats)
 	{
-
-		this.name = name;
-		this.hitPoints = hitPoints;
-		this.attackSpeed = attackSpeed;
-		this.chanceToHit = chanceToHit;
-		this.damageMin = damageMin;
-		this.damageMax = damageMax;
+		this.hitPoints = stats.hitPoints;
+		this.attackSpeed = stats.attackSpeed;
+		this.chanceToHit = stats.chanceToHit;
+		this.damageMin = stats.damageMin;
+		this.damageMax = stats.damageMax;
 
 	}//end constructor
 
@@ -165,7 +164,10 @@ hero classes and externally
 	{
 		boolean canAttack;
 		int damage;
-
+		
+		System.out.println(name + attackFlavorText +
+				opponent.getName() + ":");
+		
 		canAttack = Math.random() <= chanceToHit;
 
 		if (canAttack)
@@ -173,8 +175,6 @@ hero classes and externally
 			damage = (int)(Math.random() * (damageMax - damageMin + 1))
 						+ damageMin ;
 			opponent.subtractHitPoints(damage);
-
-
 
 			System.out.println();
 		}//end if can attack

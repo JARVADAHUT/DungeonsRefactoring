@@ -11,24 +11,29 @@
 
 public class Ogre extends Monster
 {
-	static {
+	static 
+	{
 		MonsterFactory.getInstance().registerCharacter("ogre",Ogre.class);
+
+		stats = new StatsTypes();
+		
+		stats.hitPoints = 200;
+		stats.attackSpeed = 2;
+		stats.chanceToHit = .6;
+		stats.chanceToHeal = .1;
+		stats.damageMin = 30;
+		stats.damageMax = 50;
+		stats.minHeal = 30;
+		stats.maxHeal = 50;
+		
 	}
 
     public Ogre()
 	{
-		super("Oscar the Ogre", 200, 2, .6, .1, 30, 50, 30, 50);
-
+		super("Oscar the Ogre", stats);
+		super.attackFlavorText = " slowly swings a club toward's ";
 
     }//end constructor
-
-	public void attack(DungeonCharacter opponent)
-	{
-		System.out.println(name + " slowly swings a club toward's " +
-							opponent.getName() + ":");
-		super.attack(opponent);
-
-	}//end override of attack
 
 
 }//end Monster class

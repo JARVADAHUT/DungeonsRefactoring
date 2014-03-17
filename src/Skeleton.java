@@ -11,23 +11,27 @@
 
 public class Skeleton extends Monster
 {
-	static {
+	static 
+	{
 		MonsterFactory.getInstance().registerCharacter("skeleton",Skeleton.class);
+		
+		stats = new StatsTypes();
+		
+		stats.hitPoints = 100;
+		stats.attackSpeed = 3;
+		stats.chanceToHit = .8;
+		stats.chanceToHeal = .3;
+		stats.damageMin = 30;
+		stats.damageMax = 50;
+		stats.minHeal = 30;
+		stats.maxHeal = 50;
 	}
 
     public Skeleton()
 	{
-		super("Sargath the Skeleton", 100, 3, .8, .3, 30, 50, 30, 50);
-
+		super("Sargath the Skeleton", stats);
+		super.attackFlavorText = " slices his rusty blade at ";
     }//end constructor
-
-	public void attack(DungeonCharacter opponent)
-	{
-		System.out.println(name + " slices his rusty blade at " +
-							opponent.getName() + ":");
-		super.attack(opponent);
-
-	}//end override of attack
 
 
 }//end class Skeleton

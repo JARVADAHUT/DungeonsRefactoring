@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 
 
 /**
@@ -32,18 +34,25 @@ public abstract class Hero extends DungeonCharacter
 {
 	protected double chanceToBlock;
 	protected int numTurns;
-	
+	protected ISpecialAttack specialAttackBehavior;
+	private static Scanner kb = new Scanner(System.in);
 //-----------------------------------------------------------------
 //calls base constructor and gets name of hero from user
-  public Hero(String name, int hitPoints, int attackSpeed,
-				     double chanceToHit, int damageMin, int damageMax,
-					 double chanceToBlock, String playerName)
+  public Hero(StatsTypes stats, String playerName, ISpecialAttack atk)
   {
-	super(name, hitPoints, attackSpeed, chanceToHit, damageMin, damageMax);
-	this.chanceToBlock = chanceToBlock;
+	  
+	super(stats);
+	this.chanceToBlock = stats.chanceToBlock;
 	super.name = playerName;
+	
+	specialAttackBehavior = atk;
   }
 
+  public void incrementNumTurns()
+  {
+	  numTurns++;
+  }
+  
 /*-------------------------------------------------------
 readName obtains a name for the hero from the user
 
@@ -120,6 +129,31 @@ This method is called by: external sources
 			numTurns++;
 
 		System.out.println("Number of turns this round is: " + numTurns);
+
+		int choice;
+
+		do
+		{
+		    System.out.println("1. Attack Opponent");
+		    System.out.println("2. Increase Hit Points");
+		    System.out.print("Choose an option: ");
+		    choice = kb.nextInt();
+
+		    switch (choice)
+		    {
+			    case 1: attack(opponent);
+			        break;
+			    case 2: specialAttackBehavior.preformSpecial(this, opponent);
+			        break;
+			    default:
+			        System.out.println("invalid choice!");
+		    }//end switch
+
+			numTurns--;
+		    if (numTurns > 0)
+			    System.out.println("Number of turns remaining is: " + numTurns);
+
+		} while(numTurns > 0 && hitPoints > 0 && opponent.getHitPoints() > 0);
 
 	}//end battleChoices
 

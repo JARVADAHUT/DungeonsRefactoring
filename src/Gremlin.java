@@ -11,23 +11,28 @@
 
 public class Gremlin extends Monster
 {
-	static {
+	static 
+	{
 		MonsterFactory.getInstance().registerCharacter("gremlin",Gremlin.class);
+		
+		stats = new StatsTypes();
+		
+		stats.hitPoints = 70;
+		stats.attackSpeed = 5;
+		stats.chanceToHit = .8;
+		stats.chanceToHeal = .4;
+		stats.damageMin = 15;
+		stats.damageMax = 30;
+		stats.minHeal = 20;
+		stats.maxHeal = 40;
 	}
 
     public Gremlin()
 	{
-		super("Gnarltooth the Gremlin", 70, 5, .8, .4, 15, 30, 20, 40);
+		super("Gnarltooth the Gremlin", stats);
+		super.attackFlavorText = " jab his kris at ";
 
     }//end constructor
-
-	public void attack(DungeonCharacter opponent)
-	{
-		System.out.println(name + " jabs his kris at " +
-							opponent.getName() + ":");
-		super.attack(opponent);
-
-	}//end override of attack
 
 
 }//end class Gremlin

@@ -6,12 +6,12 @@ import javax.management.ReflectionException;
 
 
 public class MonsterFactory {
-	private Map<String,Class<Monster>> characters;
+	private Map<String,Class<?extends Monster>> characters;
 	private static MonsterFactory instance;
 	
 
 	private MonsterFactory(){
-		characters = new LinkedHashMap<String,Class<Monster>>();
+		characters = new LinkedHashMap<String,Class<?extends Monster>>();
 	}
 	
 	public static MonsterFactory getInstance(){
@@ -22,13 +22,13 @@ public class MonsterFactory {
 	
 	public Monster getCharacter(String characterType) throws ReflectionException, ReflectiveOperationException, SecurityException {
 		
-		Class<Monster> productClass = (Class<Monster>)characters.get(characterType);
-		Constructor<Monster> productConstructor = productClass.getDeclaredConstructor(new Class[] { String.class });
+		Class<?extends Monster> productClass = (Class<?extends Monster>)characters.get(characterType);
+		Constructor<?extends Monster> productConstructor = productClass.getDeclaredConstructor(new Class[] { String.class });
 		return (Monster)productConstructor.newInstance(new Object[] { });
 	}
 
 
-	public void registerCharacter(String characterName, Class<Monster> characterClass) {
+	public void registerCharacter(String characterName, Class<?extends Monster> characterClass) {
 		characters.put(characterName, characterClass);
 		
 	}
